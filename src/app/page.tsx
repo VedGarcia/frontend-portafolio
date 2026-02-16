@@ -16,11 +16,6 @@ export default async function Home() {
                     {profile.nickname}
                 </h1>
             </div>
-
-            {/* Barra lateral de navegación (Imagen 5) */}
-            <nav className="fixed right-0 top-0 h-full w-16 bg-[#120a1a] flex flex-col items-center py-10 space-y-8 border-l border-purple-900/30">
-                {/* Aquí pondrás tus iconos de redes sociales que vienen de profile.socialLinks */}
-            </nav>
         </main>
     )
 }

@@ -1,5 +1,6 @@
 import { getPayload } from "@/lib/api";
 import { notFound } from "next/navigation";
+import { serialize } from "@/lib/serialize";
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
     const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts?where[slug][equals]=${params.slug}`;
@@ -14,10 +15,10 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                 <h1 className="text-5xl font-bold mt-2">{post.title}</h1>
             </header>
 
-            {/* El contenido RichText de Payload requiere un tratamiento especial */}
             <div className="prose prose-invert prose-purple max-w-none">
-                {/* Aquí usarás un renderizador de RichText más adelante */}
-                <p>Contenido del post: {post.slug}</p>
+                <div className="mt-8">
+                    {serialize(post.content.root.children)}
+                </div>
             </div>
         </article>
     );
