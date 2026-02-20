@@ -6,12 +6,11 @@ import { useState } from 'react';
 import { FaLinkedin, FaGithub, FaWhatsapp, FaTimes, FaEnvelope } from 'react-icons/fa';
 import { HiMenuAlt3 } from 'react-icons/hi';
 
-// 1. Creamos un mapa de iconos para relacionar el string de la DB con el componente
 const IconMap: Record<string, React.ElementType> = {
     linkedin: FaLinkedin,
     github: FaGithub,
     whatsapp: FaWhatsapp,
-    email: FaEnvelope, // Agregado por si lo usas en tu perfil
+    email: FaEnvelope,
 };
 
 interface NavbarProps {
@@ -31,10 +30,9 @@ export default function Navbar({ socialLinks }: NavbarProps) {
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
-    // Función auxiliar para renderizar el icono dinámicamente
     const renderIcon = (key: string, size: number) => {
         const IconComponent = IconMap[key.toLowerCase()];
-        if (!IconComponent) return null; // Si no existe el icono, no explota la app
+        if (!IconComponent) return null;
         return <IconComponent size={size} />;
     };
 
