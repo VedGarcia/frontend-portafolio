@@ -6,7 +6,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts?where[slug][equals]=${params.slug}`;
     const res = await fetch(url);
     const data = await res.json();
-    const post = data.docs[0];
+    const post = data.docs ? data.docs[0] : null;
     if (!post) notFound();
     return (
         <article className="max-w-4xl mx-auto py-20 px-6 text-white">
