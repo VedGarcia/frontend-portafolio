@@ -1,13 +1,14 @@
-import { getPayload } from "@/lib/api";
+import { getPost } from "@/lib/api";
 import { notFound } from "next/navigation";
 import { serialize } from "@/lib/serialize";
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/posts?where[slug][equals]=${params.slug}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    const post = data.docs ? data.docs[0] : null;
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const post = await getPost(slug);
     if (!post) notFound();
+    const content = post.content?.root?.children
+        ? serialize(post.content.root.children)
+        : null;
     return (
         <article className="max-w-4xl mx-auto py-20 px-6 text-white">
             <header className="mb-10">
@@ -17,7 +18,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
             <div className="prose prose-invert prose-purple max-w-none">
                 <div className="mt-8">
-                    {serialize(post.content.root.children)}
+                    {content}
                 </div>
             </div>
         </article>

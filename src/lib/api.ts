@@ -16,3 +16,15 @@ export async function getGlobal(slug: string) {
     if (!response.ok) throw new Error(`Error al obtener datos de ${slug}`);
     return response.json();
 }
+
+export async function getPost(slug: string) {
+    const response = await fetch(`${SERVER_URL}/api/posts?where[slug][equals]=${slug}`, {
+        next: { revalidate: 160 },
+    });
+    if (!response.ok) throw new Error(`Error al obtener datos de ${slug}`);
+    const data = await response.json();
+    if (data.docs && data.docs.length > 0) {
+        return data.docs[0];
+    }
+    return null;
+}
