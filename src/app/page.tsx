@@ -5,12 +5,9 @@ export default async function Home() {
     const profile = await getGlobal('profile');
     console.log(profile)
     return (
-        <main className="min-h-screen bg-[#0a050f] text-white flex flex-col items-center px-10 relative overflow-hidden">
-            <section className="w-full h-dvh">
+        <main className="min-h-screen  text-white flex flex-col items-center px-10 relative overflow-hidden">
+            <section className="w-full min-h-dvh flex flex-col justify-center">
                 {/* Fondo con Hexágonos (puedes usar SVGs o CSS absoluto) */}
-                <div className="absolute top-10 left-50 opacity-30">
-                    {/* Aquí irían tus componentes de hexágonos según tu diseño */}
-                </div>
 
                 <div className="z-10">
                     <h2 className="text-4xl font-light text-purple-300">El blog de</h2>

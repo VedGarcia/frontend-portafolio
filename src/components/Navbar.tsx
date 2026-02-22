@@ -24,7 +24,7 @@ export default function Navbar({ socialLinks }: NavbarProps) {
     const navLinks = [
         { name: 'INICIO', href: '/' },
         { name: 'SOBRE MI', href: '/sobre-mi' },
-        { name: 'PROYECTOS', href: '/proyectos' },
+        { name: 'PROYECTOS', href: '/projects' },
         { name: 'ARTICULOS', href: '/blog' },
     ];
 
@@ -40,7 +40,7 @@ export default function Navbar({ socialLinks }: NavbarProps) {
         <>
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-opacity duration-300"
+                    className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300"
                     onClick={toggleMenu}
                 />
             )}

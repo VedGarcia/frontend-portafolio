@@ -24,3 +24,36 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.hexagon-wrapper {
+  transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, top, left, right, bottom;
+}
+
+.animate-spin-custom {
+  animation: spin-slow var(--speed) linear infinite;
+}
+
+.animate-spin-reverse {
+  animation: spin-reverse var(--speed) linear infinite;
+}
