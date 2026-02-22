@@ -1,8 +1,8 @@
-import { getPayload } from "@/lib/api";
+import { api } from "@/services/dataServices";
 import Link from "next/link";
 
 export default async function BlogPage() {
-    const data = await getPayload('posts');
+    const data = await api.getCollection('posts');
     const posts = data.docs;
     return (
         <div className="min-h-screen bg-[#0a050f] text-white p-10">

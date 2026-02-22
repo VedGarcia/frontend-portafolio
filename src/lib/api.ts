@@ -28,3 +28,11 @@ export async function getPost(slug: string) {
     }
     return null;
 }
+
+export async function getProjects() {
+    const response = await fetch(`${SERVER_URL}/api/projects?depth=2`, {
+        next: { revalidate: 60 },
+    });
+    if (!response.ok) throw new Error(`Error al obtener datos de projects`);
+    return response.json();
+}
