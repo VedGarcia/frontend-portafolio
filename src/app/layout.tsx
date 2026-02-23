@@ -35,7 +35,7 @@ export default async function RootLayout({
       >
         <FloatingHexagons />
         <Navbar socialLinks={profile.socialLinks} />
-        <div className="pr-20 ">
+        <div className="container mx-auto">
           {children}
         </div>
       </body>

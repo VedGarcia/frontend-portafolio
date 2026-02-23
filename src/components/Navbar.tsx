@@ -46,7 +46,7 @@ export default function Navbar({ socialLinks }: NavbarProps) {
             )}
 
             {/* Side Menu (Mobile/Toggle) */}
-            <div className={`fixed top-0 right-0 h-full w-64 bg-[#0d0714] border-l border-purple-900/30 z-[70] transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed top-0 right-0 h-full w-64 bg-purple-950/20 z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="flex flex-col h-full p-8">
                     <div className="flex justify-end mb-12">
                         <FaTimes
@@ -87,7 +87,7 @@ export default function Navbar({ socialLinks }: NavbarProps) {
             </div>
 
             {/* Static Sidebar */}
-            <nav className="fixed right-0 top-0 h-full w-20 bg-[#0d0714] border-l border-purple-900/20 flex flex-col justify-between py-10 z-50">
+            <nav className="fixed right-0 top-0 h-full w-20 bg-linear-to-r to-purple-950/40 flex flex-col justify-between py-10 z-40">
                 <div className="flex justify-center">
                     <HiMenuAlt3
                         size={28}
@@ -103,7 +103,7 @@ export default function Navbar({ socialLinks }: NavbarProps) {
                             href={value}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-purple-500 transition-all duration-300 transform hover:scale-110"
+                            className="hover:text-purple-500 transition-all duration-200 transform hover:scale-110"
                         >
                             {renderIcon(key, 22)}
                         </a>
@@ -111,7 +111,7 @@ export default function Navbar({ socialLinks }: NavbarProps) {
                 </div>
 
                 <div className="flex justify-center">
-                    <div className="w-1 h-12 bg-purple-600 rounded-full shadow-[0_0_10px_#7c3aed]"></div>
+                    <div className="w-1 h-12 bg-purple-600 rounded-full shadow-[0_0_10px_#7c3aed]" />
                 </div>
             </nav>
         </>
