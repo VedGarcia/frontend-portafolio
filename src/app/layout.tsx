@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description: "Portafolio de Victor Garcia",
 };
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -29,15 +31,19 @@ export default async function RootLayout({
   const profile = await getGlobal('profile');
 
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-linear-to-br from-purple-600 to-purple-900 text-white antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen transition-colors duration-500
+          bg-white text-purple-950 
+          dark:bg-linear-to-br dark:from-purple-950 dark:via-black dark:to-purple-900 dark:text-purple-200`}
       >
-        <FloatingHexagons />
-        <Navbar socialLinks={profile.socialLinks} />
-        <div className="container mx-auto">
-          {children}
-        </div>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
+          <FloatingHexagons />
+          <Navbar socialLinks={profile.socialLinks} />
+          <div className="container mx-auto">
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
