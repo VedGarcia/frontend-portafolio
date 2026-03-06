@@ -14,7 +14,7 @@ const POSITIONS: Record<string, any> = {
         { top: '60%', left: '5%', size: 90, speed: '20s', reverse: true },
         { top: '80%', left: '20%', size: 120, speed: '35s' },
     ],
-    '/sobre-mi': [ // Sobre mí: Derecha media 
+    '/about': [ // Sobre mí: Derecha media 
         { top: '40%', left: '75%', size: 200, speed: '25s' },
         { top: '30%', left: '85%', size: 100, speed: '18s', reverse: true },
         { top: '55%', left: '80%', size: 140, speed: '28s' },

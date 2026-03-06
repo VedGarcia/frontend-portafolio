@@ -30,7 +30,7 @@ export default function Navbar({ socialLinks }: NavbarProps) {
 
     const navLinks = [
         { name: 'INICIO', href: '/' },
-        { name: 'SOBRE MI', href: '/sobre-mi' },
+        { name: 'SOBRE MI', href: '/about' },
         { name: 'PROYECTOS', href: '/projects' },
         { name: 'ARTICULOS', href: '/blog' },
     ];
