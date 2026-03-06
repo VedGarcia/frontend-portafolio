@@ -31,8 +31,8 @@ export default function Navbar({ socialLinks }: NavbarProps) {
     const navLinks = [
         { name: 'INICIO', href: '/' },
         { name: 'SOBRE MI', href: '/about' },
-        { name: 'PROYECTOS', href: '/projects' },
         { name: 'ARTICULOS', href: '/blog' },
+        { name: 'PROYECTOS', href: '/projects' },
     ];
 
     const toggleMenu = () => setIsOpen(!isOpen);
@@ -48,9 +48,10 @@ export default function Navbar({ socialLinks }: NavbarProps) {
 
     return (
         <>
+            {/* Overlay */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-white/60 dark:bg-black/80 backdrop-blur-sm z-50 transition-all duration-300"
+                    className="fixed inset-0 bg-white/60 dark:bg-black/40 backdrop-blur-sm z-50 transition-all duration-300"
                     onClick={toggleMenu}
                 />
             )}
@@ -97,7 +98,7 @@ export default function Navbar({ socialLinks }: NavbarProps) {
             </div>
 
             {/* Desktop Top Bar */}
-            <nav className="hidden lg:flex fixed top-0 left-0 w-full h-20 bg-white/60 dark:bg-black/40 backdrop-blur-md border-b border-purple-200/50 dark:border-purple-900/40 items-center justify-between px-10 z-40 transition-all duration-500 shadow-[0_0_20px_rgba(147,51,234,0.1)] dark:shadow-[0_0_20px_rgba(192,132,252,0.05)]">
+            <nav className="hidden lg:flex fixed top-0 left-0 w-full h-20 bg-bg-linear-to-b to-white/60 dark:to-black/40 backdrop-blur-xs items-center justify-between px-10 z-40 transition-all duration-500 shadow-[0_0_20px_rgba(147,51,234,0.1)] dark:shadow-[0_0_20px_rgba(192,132,252,0.05)]">
                 {/* Menu Links */}
                 <div className="flex items-center gap-8">
                     {navLinks.map((link) => (
