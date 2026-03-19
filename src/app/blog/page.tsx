@@ -6,7 +6,7 @@ export default async function BlogPage() {
     const posts = data.docs;
     return (
         <div className="min-h-screen  text-white p-10">
-            <h1 className="mt-16 py-4 text-6xl font-bold text-purple-950 dark:text-purple-400 tracking-tighter drop-shadow-md dark:drop-shadow-[0_0_15px_rgba(192,132,252,0.8)] transition-colors">Artículos</h1>
+            <h1 className="mt-16 py-4 text-8xl font-bold text-purple-950 dark:text-purple-400 tracking-tighter drop-shadow-md dark:drop-shadow-[0_0_15px_rgba(192,132,252,0.8)] transition-colors">Artículos</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {posts.map((post: any) => (
@@ -17,7 +17,7 @@ export default async function BlogPage() {
                             </span>
                             <h2 className="text-2xl font-semibold mt-2">{post.title}</h2>
                             <p className="text-gray-400 mt-4 line-clamp-3">
-                                Haga clic para leer más sobre este tema...
+                                Haga clic para leer más...
                             </p>
                         </article>
                     </Link>
