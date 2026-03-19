@@ -34,8 +34,8 @@ export default async function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen transition-colors duration-500
-          bg-white text-purple-950 
-          dark:bg-linear-to-br dark:from-purple-950 dark:via-black dark:to-purple-900 dark:text-purple-200`}
+          bg-white text-violet-950 
+          dark:bg-linear-to-br dark:from-violet-950 dark:via-black dark:to-violet-900 dark:text-violet-200`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
           <FloatingHexagons />

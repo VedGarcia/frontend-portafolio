@@ -17,7 +17,7 @@ export default async function AboutPage() {
             </div>
             <section className="max-w-5xl flex flex-col z-10 mt-32">
                 <p className="font-light text-purple-900 dark:text-purple-300 text-md max-w-3xl transition-colors">
-                    Hola, soy <span className="font-bold text-purple-700 dark:text-purple-400 dark:drop-shadow-[0_0_5px_rgba(192,132,252,0.8)]">{profile.name}</span> hablemos un poco de mi historia profesional.
+                    Hola, soy <span className="font-bold text-violet-800 dark:text-violet-400 dark:drop-shadow-[0_0_5px_rgba(192,132,252,0.8)]">{profile.name}</span> hablemos un poco de mi historia profesional.
                 </p>
                 <div className="mt-8  text-purple-900 dark:text-purple-300 transition-colors">
                     {content}
