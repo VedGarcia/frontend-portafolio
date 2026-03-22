@@ -6,7 +6,7 @@ export default async function ProjectsPage() {
 
     return (
         <main className="min-h-screen p-10">
-            <h1 className="mt-16 py-4 text-6xl font-bold text-purple-950 dark:text-purple-400 tracking-tighter drop-shadow-md dark:drop-shadow-[0_0_15px_rgba(192,132,252,0.8)] transition-colors">Mis Proyectos</h1>
+            <h1 className="mt-16 py-4 text-6xl md:text-8xl font-bold text-purple-950 dark:text-purple-400 tracking-tighter drop-shadow-md dark:drop-shadow-[0_0_15px_rgba(192,132,252,0.8)] transition-colors">Mis Proyectos</h1>
 
             {/* Contenedor Flex con envoltura y centrado */}
             <div className="flex flex-wrap justify-center gap-4 max-w-6xl mx-auto">
