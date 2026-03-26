@@ -8,7 +8,7 @@ export default async function AboutPage() {
         ? serialize(profile.all_bio.root.children)
         : null;
     return (
-        <main className="min-h-screen flex flex-col items-start md:items-center px-10 overflow-x-hidden">
+        <main className="min-h-screen flex flex-col items-start md:items-center px-10 overflow-x-hidden pr-14 lg:pr-0">
             <div className="w-full h-20 sticky top-20">
 
                 <h3 className="py-4 text-4xl md:text-6xl font-bold text-violet-950 dark:text-violet-400 tracking-tighter drop-shadow-md dark:drop-shadow-[0_0_15px_rgba(192,132,252,0.8)] transition-colors">

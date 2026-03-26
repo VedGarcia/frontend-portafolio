@@ -22,9 +22,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         ? serialize(post.content.root.children)
         : null;
     return (
-        <article className="max-w-4xl mx-auto py-20 px-6 text-violet-950 dark:text-white">
-            <Link href="/blog" className="fixed flex gap-2 top-28 left-28 font-light text-xl items-center justify-center text-violet-700 dark:text-violet-300  hover:text-violet-600 dark:hover:text-violet-100 transition-all mx-4 uppercase">
-                <FaArrowLeft className="w-5 h-5 shrink-0" /> Artículos
+        <article className="max-w-4xl mx-auto py-20 px-6 text-violet-950 dark:text-white pr-14 lg:pr-0">
+            <Link href="/blog" className="fixed flex flex-col md:flex-row gap-2 md:top-28 top-16 md:left-28 right-4 font-light text-xl items-center justify-center text-violet-700 dark:text-violet-300  hover:text-violet-600 dark:hover:text-violet-100 transition-all mx-4 uppercase">
+                <FaArrowLeft className="w-5 h-5 shrink-0" />
+                <span className="hidden md:block">Artículos</span>
             </Link>
             <header className="my-10">
                 <span className="text-violet-600 dark:text-purple-400 font-mono">{post.category?.name}</span>
