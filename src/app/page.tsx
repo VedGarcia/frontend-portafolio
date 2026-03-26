@@ -9,12 +9,12 @@ export default async function Home() {
             <div className="w-full max-w-7xl mx-auto flex flex-col items-center">
 
                 {/* Hero / Título */}
-                <section className="w-full min-h-dvh flex flex-col justify-center items-center lg:items-end text-center lg:text-right px-6 md:px-10 z-10">
-                    <div>
+                <section className="w-full min-h-dvh flex flex-col justify-center items-center lg:items-end text-center lg:text-right lg:mr-10 px-6 md:px-10 z-10">
+                    <div className="flex flex-col items-end justify-end w-full h-full pb-20">
                         <h2 className="text-4xl md:text-5xl font-light text-purple-900 dark:text-purple-300 drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(192,132,252,0.8)] transition-colors mb-2">
                             El blog de
                         </h2>
-                        <h1 className="text-7xl md:text-9xl font-bold text-purple-950 dark:text-purple-400 tracking-tighter drop-shadow-xl dark:drop-shadow-[0_0_20px_rgba(192,132,252,1)] transition-colors">
+                        <h1 className="text-5xl md:text-9xl font-bold text-purple-950 dark:text-purple-400 tracking-tighter drop-shadow-xl dark:drop-shadow-[0_0_20px_rgba(192,132,252,1)] transition-colors">
                             {profile.nickname}
                         </h1>
                     </div>
@@ -38,10 +38,13 @@ export default async function Home() {
                             Sobre mí
                         </h3>
                         <p className="font-light text-purple-900 dark:text-purple-300 text-lg md:text-xl py-2 transition-colors">
-                            Hola, soy <span className="font-bold text-purple-700 dark:text-purple-400 dark:drop-shadow-[0_0_5px_rgba(192,132,252,0.8)]">{profile.name}</span> y para resumir estoy organizando mi formación porque me gusta programar.
+                            Hola, soy <span className="font-bold text-purple-700 dark:text-purple-400 dark:drop-shadow-[0_0_5px_rgba(192,132,252,0.8)]">{profile.name}</span> y para resumir éste es mi blog, les comento un poco de mi:
                         </p>
                         <p className="font-light text-purple-900 dark:text-purple-300 text-lg md:text-xl py-2 transition-colors">
                             {profile.bio}
+                        </p>
+                        <p className="font-light text-purple-900 dark:text-purple-300 text-lg md:text-xl py-2 transition-colors">
+                            Eso es lo que dice la IA de mí, sin embargo me gustaría que navegues un poco y veas que más hay de interesante en el blog. Espero que disfruten de mi blog y que encuentren información valiosa y útil para sus proyectos.
                         </p>
                     </div>
                 </section>

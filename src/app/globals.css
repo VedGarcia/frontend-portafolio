@@ -3,8 +3,8 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ded5e7;
+  --foreground: var(--theme-color-violet-950, #2e1065);
 }
 
 @theme inline {
@@ -15,8 +15,8 @@
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: linear-gradient(to bottom, var(--theme-color-violet-950, #220a4e), #000000, var(--theme-color-violet-900, #220a4e));
+  --foreground: var(--theme-color-violet-200, #ddd6fe);
 }
 
 body {
