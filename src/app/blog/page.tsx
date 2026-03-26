@@ -5,7 +5,7 @@ export default async function BlogPage() {
     const data = await api.getCollection('posts');
     const posts = data.docs;
     return (
-        <div className="min-h-screen text-white p-10 pr-14 lg:pr-0">
+        <div className="min-h-svh text-white p-10 pr-14 lg:pr-0">
             <h1 className="mt-16 py-4 text-4xl md:text-6xl font-bold text-violet-950 dark:text-violet-400 tracking-tighter drop-shadow-md dark:drop-shadow-[0_0_15px_rgba(192,132,252,0.8)] transition-colors">Artículos</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

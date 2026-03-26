@@ -5,7 +5,7 @@ export default async function ProjectsPage() {
     const projects = await api.getCollection('projects');
 
     return (
-        <main className="min-h-screen p-10">
+        <main className="min-h-svh p-10">
             <h1 className="mt-16 py-4 text-4xl md:text-6xl font-bold text-violet-950 dark:text-violet-400 tracking-tighter drop-shadow-md dark:drop-shadow-[0_0_15px_rgba(192,132,252,0.8)] transition-colors">Mis Proyectos</h1>
 
             {/* Contenedor Flex con envoltura y centrado */}

@@ -1,8 +1,19 @@
-# Portfolio Frontend
+# Portfolio - El Blog de VEd (Víctor García)
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Este proyecto es la interfaz pública (frontend) de un portafolio personal y blog técnico, diseñado para ofrecer una experiencia visual impactante y fluida, construida con **Next.js 15 (App Router)** y **Tailwind CSS 4**.
 
 ---
+
+## 🛠️ Tecnologías y Estética
+
+El proyecto destaca por una interfaz moderna, dinámica y con una estética de "panal" (hexagon-based) que utiliza:
+
+- **Next.js 15**: Renderizado híbrido (SSR/SSG) para un SEO óptimo y tiempos de carga rápidos.
+- **Tailwind CSS 4**: Estilos de última generación, aprovechando variables CSS y efectos avanzados.
+- **Next-Themes**: Soporte completo para **Modo Oscuro/Claro** perfectamente sincronizado.
+- **React-Icons / Hi-Icons**: Iconografía moderna y escalable.
+- **Geist Font**: Tipografía premium de Vercel para una lectura nítida.
+- **Efectos Neón y Glassmorphism**: Micro-animaciones y sombras dinámicas para una sensación "Premium".
 
 ## Arquitectura de Datos (`lib` y `services`)
 
@@ -92,6 +103,17 @@ Si el proyecto requiere nuevas formas de interactuar con el backend, debes segui
 
 3. **Renderizado de Texto Enriquecido:**
    Si añades nuevos bloques personalizados a tu CMS (por ejemplo, un bloque tipo "Galería de imágenes" o "Llamado a la acción" dentro del contenido), deberás actualizar el `switch (node.type)` dentro de `src/lib/serialize.tsx` para que React sepa qué componente renderizar cuando reciba ese nuevo tipo de nodo.
+
+---
+
+## 🚀 Características Destacadas
+
+1.  **Diseño Responsivo Fluido**: Adaptación perfecta a móviles, tablets y escritorio.
+2.  **Optimización de Scroll Móvil**: Implementación de `min-h-svh` para evitar saltos bruscos cuando se oculta la barra de herramientas del navegador.
+3.  **Floating Hexagons**: Sistema de partículas flotantes animadas que aportan profundidad visual.
+4.  **Menú Lateral Inteligente**: Navegación lateral en móviles con cambio de tema integrado.
+5.  **SEO Ready**: Estructura semántica, meta-etiquetas dinámicas y jerarquía de encabezados (H1-H6) optimizada.
+6.  **Integración con CMS**: Consumo dinámico de Artículos, Proyectos y Perfil de Usuario desde un Backend centralizado.
 
 ---
 

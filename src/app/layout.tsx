@@ -33,7 +33,7 @@ export default async function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen transition-colors duration-500`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-svh transition-colors duration-500`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
           <FloatingHexagons />
