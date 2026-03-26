@@ -21,7 +21,7 @@ export default async function Home() {
                 </section>
 
                 {/* Sobre Mi */}
-                <section className="w-full min-h-svh flex flex-col items-center justify-center text-center gap-6 px-6 md:px-10 z-10 pt-20 lg:pt-0 pr-14 lg:pr-0">
+                <section className="w-full min-h-svh flex flex-col items-center justify-center text-center gap-6 px-6 md:px-10 md:pr-20 lg:pr-0 z-10 pt-20 lg:pt-0">
                     {profile?.profilePicture && (
                         <div className="w-48 h-48 md:w-56 md:h-56 overflow-hidden rounded-4xl">
                             <Images
