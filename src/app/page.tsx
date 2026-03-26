@@ -33,17 +33,17 @@ export default async function Home() {
                             />
                         </div>
                     )}
-                    <div className="flex flex-col items-center max-w-3xl">
+                    <div className="flex flex-col items-start md:items-center text-start md:text-center max-w-3xl">
                         <h3 className="py-2 text-4xl md:text-6xl font-bold text-purple-950 dark:text-purple-400 tracking-tighter drop-shadow-md dark:drop-shadow-[0_0_15px_rgba(192,132,252,0.8)] transition-colors">
                             Sobre mí
                         </h3>
-                        <p className="font-light text-purple-900 dark:text-purple-300 text-lg md:text-xl py-2 transition-colors">
+                        <p className="font-light text-lg md:text-xl py-2 transition-colors">
                             Hola, soy <span className="font-bold text-purple-700 dark:text-purple-400 dark:drop-shadow-[0_0_5px_rgba(192,132,252,0.8)]">{profile.name}</span> y para resumir éste es mi blog, les comento un poco de mi:
                         </p>
-                        <p className="font-light text-purple-900 dark:text-purple-300 text-lg md:text-xl py-2 transition-colors">
+                        <p className="font-light text-lg md:text-xl py-2 transition-colors">
                             {profile.bio}
                         </p>
-                        <p className="font-light text-purple-900 dark:text-purple-300 text-lg md:text-xl py-2 transition-colors">
+                        <p className="font-light text-lg md:text-xl py-2 transition-colors">
                             Eso es lo que dice la IA de mí, sin embargo me gustaría que navegues un poco y veas que más hay de interesante en el blog. Espero que disfruten de mi blog y que encuentren información valiosa y útil para sus proyectos.
                         </p>
                     </div>

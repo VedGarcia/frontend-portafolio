@@ -62,7 +62,7 @@ export default function Navbar({ socialLinks }: NavbarProps) {
                     <div className="flex justify-end mb-12">
                         <FaTimes
                             size={28}
-                            className={`text-purple-700 dark:text-purple-500 cursor-pointer transition-all ${neonIconHover}`}
+                            className={`text-purple-700 dark:text-purple-500 md:cursor-pointer transition-all ${neonIconHover}`}
                             onClick={toggleMenu}
                         />
                     </div>
@@ -73,11 +73,12 @@ export default function Navbar({ socialLinks }: NavbarProps) {
                                 key={link.href}
                                 href={link.href}
                                 onClick={toggleMenu}
-                                className={`text-lg font-medium tracking-widest transition-all ${pathname === link.href ? 'text-purple-800 dark:text-purple-300 drop-shadow-[0_0_5px_rgba(147,51,234,0.8)] dark:drop-shadow-[0_0_5px_rgba(192,132,252,0.8)]' : `text-purple-900/70 dark:text-gray-400 ${neonTextHover}`}`}
+                                className={`text-lg font-medium tracking-widest transition-all ${pathname === link.href ? 'text-purple-800 dark:text-purple-300 drop-shadow-[0_0_5px_rgba(147,51,234,0.8)] dark:drop-shadow-[0_0_5px_rgba(192,132,252,0.8)]' : `text-purple-900/70 dark:text-gray-400`}`}
                             >
                                 {link.name}
                             </Link>
                         ))}
+
                     </nav>
 
                     {/* Redes Sociales en Menu Lateral */}
@@ -93,6 +94,16 @@ export default function Navbar({ socialLinks }: NavbarProps) {
                                 {renderIcon(key, 24)}
                             </a>
                         ))}
+                        {/* Mobile/Tablet Theme Toggle */}
+                        {mounted && (
+                            <button
+                                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                                className={`md:hidden self-start rounded-full bg-white/50 dark:bg-black/40 text-purple-800/70 dark:text-gray-400 transition-all drop-shadow-md ${neonIconHover}`}
+                                aria-label="Toggle Theme"
+                            >
+                                {theme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
@@ -152,20 +163,11 @@ export default function Navbar({ socialLinks }: NavbarProps) {
                 <div className="flex justify-center flex-col gap-6 items-center">
                     <HiMenuAlt3
                         size={32}
-                        className={`text-purple-800 dark:text-purple-400 cursor-pointer transform rotate-180 drop-shadow-md bg-white/50 dark:bg-black/40 md:bg-transparent p-1 rounded-md md:p-0 md:rounded-none transition-all ${neonIconHover}`}
+                        className={`text-purple-800 dark:text-purple-400 cursor-pointer transform rotate-180 drop-shadow-md md:bg-transparent p-1 rounded-md md:p-0 md:rounded-none transition-all ${neonIconHover}`}
                         onClick={toggleMenu}
                     />
 
-                    {/* Mobile/Tablet Theme Toggle */}
-                    {mounted && (
-                        <button
-                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                            className={`md:hidden p-2 rounded-full bg-white/50 dark:bg-black/40 text-purple-800 dark:text-purple-300 transition-all drop-shadow-md ${neonIconHover}`}
-                            aria-label="Toggle Theme"
-                        >
-                            {theme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}
-                        </button>
-                    )}
+
                 </div>
 
                 {/* Tablet Icons (hidden on mobile) */}
