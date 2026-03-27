@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { FaLinkedin, FaGithub, FaWhatsapp, FaTimes, FaEnvelope, FaSun, FaMoon } from 'react-icons/fa';
@@ -20,13 +20,49 @@ interface NavbarProps {
 
 export default function Navbar({ socialLinks }: NavbarProps) {
     const pathname = usePathname();
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    
     const [isOpen, setIsOpen] = useState(false);
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
+    // Initializamos el campo de búsqueda con el parámetro de la URL
+    const [searchTerm, setSearchTerm] = useState('');
+
     useEffect(() => {
         setMounted(true);
-    }, []);
+        // Sincronizar el valor inicial del input si hay una búsqueda activa
+        if (searchParams) {
+            setSearchTerm(searchParams.get('q') || '');
+        }
+    }, [searchParams]);
+
+    // Lógica de debounce para optimizar el rendimiento y evitar múltiples redirecciones al teclear
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            const currentQuery = searchParams?.get('q') || '';
+            // Solo actulizamos la URL si el término ha cambiado
+            if (searchTerm !== currentQuery) {
+                const params = new URLSearchParams(searchParams?.toString() || '');
+                if (searchTerm) {
+                    params.set('q', searchTerm);
+                } else {
+                    params.delete('q');
+                }
+
+                // Si no estamos en la página del blog y el usuario busca algo, redirigirlo
+                if (!pathname.startsWith('/blog') && searchTerm) {
+                    router.push(`/blog?${params.toString()}`);
+                } else if (pathname.startsWith('/blog')) {
+                    // Si ya estamos en blog, reemplazar para no apilar historial al teclear
+                    router.push(`${pathname}?${params.toString()}`);
+                }
+            }
+        }, 400); // 400ms de retraso es ideal para escribir cómodamente
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [searchTerm, searchParams, pathname, router]);
 
     const navLinks = [
         { name: 'INICIO', href: '/' },
@@ -78,7 +114,6 @@ export default function Navbar({ socialLinks }: NavbarProps) {
                                 {link.name}
                             </Link>
                         ))}
-
                     </nav>
 
                     {/* Redes Sociales en Menu Lateral */}
@@ -128,6 +163,8 @@ export default function Navbar({ socialLinks }: NavbarProps) {
                     <input
                         type="search"
                         placeholder="Buscar artículos..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
                         className="bg-purple-50/50 dark:bg-purple-950/40 border border-purple-300/50 dark:border-purple-800/50 rounded-full py-2 px-5 text-sm text-purple-950 dark:text-gray-200 outline-none focus:border-purple-600 dark:focus:border-purple-400 focus:shadow-[0_0_15px_rgba(147,51,234,0.4)] dark:focus:shadow-[0_0_15px_rgba(192,132,252,0.4)] transition-all w-64 placeholder-purple-800/40 dark:placeholder-purple-400/50"
                     />
 
