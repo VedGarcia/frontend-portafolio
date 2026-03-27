@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
-import { FaLinkedin, FaGithub, FaWhatsapp, FaTimes, FaEnvelope, FaSun, FaMoon } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaWhatsapp, FaTimes, FaEnvelope, FaSun, FaMoon, FaSearch } from 'react-icons/fa';
 import { HiMenuAlt3 } from 'react-icons/hi';
 
 const IconMap: Record<string, React.ElementType> = {
@@ -22,10 +22,26 @@ export default function Navbar({ socialLinks }: NavbarProps) {
     const pathname = usePathname();
     const router = useRouter();
     const searchParams = useSearchParams();
-    
+
     const [isOpen, setIsOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const searchContainerRef = useRef<HTMLElement>(null);
+
+    // Cierra el buscador al hacer clic fuera del componente en móvil
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (isSearchOpen && searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+                setIsSearchOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isSearchOpen]);
 
     // Initializamos el campo de búsqueda con el parámetro de la URL
     const [searchTerm, setSearchTerm] = useState('');
@@ -196,16 +212,33 @@ export default function Navbar({ socialLinks }: NavbarProps) {
             </nav>
 
             {/* Tablet & Mobile Sidebar/Button */}
-            <nav className="lg:hidden fixed right-0 top-0 md:h-full md:w-20 w-auto h-auto md:bg-linear-to-r md:from-transparent md:to-purple-100/80 md:dark:to-purple-950/40 flex flex-col justify-between md:py-10 p-6 z-40 bg-transparent transition-all duration-500">
+            <nav ref={searchContainerRef} className="lg:hidden fixed right-0 top-0 md:h-full md:w-20 w-auto h-auto md:bg-linear-to-r md:from-transparent md:to-purple-100/80 md:dark:to-purple-950/40 flex flex-col justify-between md:py-10 p-6 z-40 bg-transparent transition-all duration-500">
                 <div className="flex justify-center flex-col gap-6 items-center">
                     <HiMenuAlt3
                         size={32}
                         className={`text-purple-800 dark:text-purple-400 cursor-pointer transform rotate-180 drop-shadow-md md:bg-transparent p-1 rounded-md md:p-0 md:rounded-none transition-all ${neonIconHover}`}
                         onClick={toggleMenu}
                     />
-
-
+                    <FaSearch
+                        size={18}
+                        className={`text-purple-800 dark:text-purple-400 cursor-pointer drop-shadow-md transition-all ${neonIconHover}`}
+                        onClick={() => setIsSearchOpen(!isSearchOpen)}
+                    />
                 </div>
+
+                {/* Mobile Search Overlay */}
+                {isSearchOpen && (
+                    <div className="absolute top-24 right-6 bg-white/95 dark:bg-[#120a1a]/95 p-4 rounded-xl shadow-2xl border border-purple-200 dark:border-purple-800/50 backdrop-blur-md z-50">
+                        <input
+                            type="search"
+                            placeholder="Buscar artículos..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="bg-purple-50/50 dark:bg-purple-950/40 border border-purple-300/50 dark:border-purple-800/50 rounded-full py-2 px-5 text-sm text-purple-950 dark:text-gray-200 outline-none focus:border-purple-600 dark:focus:border-purple-400 focus:shadow-[0_0_15px_rgba(147,51,234,0.4)] dark:focus:shadow-[0_0_15px_rgba(192,132,252,0.4)] transition-all w-60 placeholder-purple-800/40 dark:placeholder-purple-400/50"
+                            autoFocus
+                        />
+                    </div>
+                )}
 
                 {/* Tablet Icons (hidden on mobile) */}
                 <div className="hidden md:flex flex-col items-center space-y-8 text-purple-800/70 dark:text-gray-400">
