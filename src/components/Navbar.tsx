@@ -29,6 +29,24 @@ export default function Navbar({ socialLinks }: NavbarProps) {
     const [mounted, setMounted] = useState(false);
     const searchContainerRef = useRef<HTMLElement>(null);
     const [isScrolling, setIsScrolling] = useState(false);
+    const [dragOffset, setDragOffset] = useState(0);
+
+    // Referencias para Swipe to close en mobile
+    const touchStartY = useRef(0);
+    const touchEndY = useRef(0);
+
+    // Bloquear el scroll de la página cuando el menú móvil está abierto
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
 
     // Detectar scroll para ocultar iconos sociales flotantes en mobile
     useEffect(() => {
@@ -102,6 +120,25 @@ export default function Navbar({ socialLinks }: NavbarProps) {
         { name: 'ARTICULOS', href: '/blog' },
         { name: 'PROYECTOS', href: '/projects' },
     ];
+
+    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        touchStartY.current = e.targetTouches[0].clientY;
+        touchEndY.current = e.targetTouches[0].clientY;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        touchEndY.current = e.targetTouches[0].clientY;
+        const offset = Math.max(0, touchEndY.current - touchStartY.current); // Solo permitir arrastrar hacia abajo
+        setDragOffset(offset);
+    };
+
+    const handleTouchEnd = () => {
+        const offset = touchEndY.current - touchStartY.current;
+        if (offset > 50) {
+            setIsOpen(false);
+        }
+        setDragOffset(0); // Restablecer siempre al terminar el toque
+    };
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -197,17 +234,23 @@ export default function Navbar({ socialLinks }: NavbarProps) {
             </div>
 
             {/* Bottom Sheet Menu (Mobile Overlay) */}
-            {isOpen && (
-                <>
-                    <div
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden transition-opacity"
-                        onClick={toggleMenu}
-                    />
-                    <div className="fixed bottom-12 left-0 w-full bg-white/95 dark:bg-[#120a1a]/95 backdrop-blur-xl border-t border-purple-300/50 dark:border-purple-800/50 rounded-t-3xl z-50 p-6 shadow-[0_-10px_40px_rgba(147,51,234,0.15)] dark:shadow-[0_-10px_40px_rgba(192,132,252,0.15)] transition-transform duration-300 lg:hidden flex flex-col items-center">
-                        <div
-                            className="w-16 h-1.5 bg-purple-300 dark:bg-purple-800 rounded-full mb-8 cursor-pointer"
-                            onClick={toggleMenu}
-                        />
+            <div
+                className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                onClick={toggleMenu}
+            />
+            <div 
+                className={`fixed bottom-12 left-0 w-full bg-white/95 dark:bg-[#120a1a]/95 backdrop-blur-xl border-t border-purple-300/50 dark:border-purple-800/50 rounded-t-3xl z-50 p-6 shadow-[0_-10px_40px_rgba(147,51,234,0.15)] dark:shadow-[0_-10px_40px_rgba(192,132,252,0.15)] lg:hidden flex flex-col items-center ${dragOffset === 0 ? 'transition-transform duration-300 ease-out' : ''}`}
+                style={{
+                    transform: isOpen ? `translateY(${dragOffset}px)` : 'translateY(150%)',
+                }}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+            >
+                <div
+                    className="w-16 h-1.5 bg-purple-300 dark:bg-purple-800 rounded-full mb-8 cursor-pointer"
+                    onClick={toggleMenu}
+                />
                         <nav className="flex flex-col w-full px-4 space-y-2">
                             {navLinks.map((link) => (
                                 <Link
@@ -220,15 +263,7 @@ export default function Navbar({ socialLinks }: NavbarProps) {
                                 </Link>
                             ))}
                         </nav>
-                        <button
-                            onClick={toggleMenu}
-                            className="mt-8 p-4 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 shadow-md transform hover:scale-105 transition-all"
-                        >
-                            <FaTimes size={24} />
-                        </button>
-                    </div>
-                </>
-            )}
+            </div>
 
             {/* Bottom Navbar (Mobile/Tablet) */}
             <nav
