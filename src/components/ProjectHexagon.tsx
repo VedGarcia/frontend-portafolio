@@ -12,13 +12,15 @@ interface ProjectProps {
 
 export default function ProjectHexagon({ project }: ProjectProps) {
     return (
-        <div className="relative w-[85vw] max-w-[280px] sm:max-w-[320px] md:w-[260px] lg:w-[320px] aspect-8/9 group">
+        // Rellenamos el 100% del contenedor hex-wrapper calculado por el parent
+        <div className="relative w-full h-full group">
             <div
                 className="w-full h-full bg-violet-900/20 overflow-hidden transition-all duration-500 md:group-hover:bg-violet-800/40"
                 style={{
                     clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
                 }}
             >
+                {/* Capa de la Imagen */}
                 <div className="absolute inset-0 z-0 opacity-80 md:opacity-60 md:group-hover:opacity-100 transition-opacity duration-700">
                     <Images
                         src={project.image}
@@ -31,6 +33,7 @@ export default function ProjectHexagon({ project }: ProjectProps) {
                 <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-4 sm:p-6 text-center 
                                 bg-black/60 md:bg-black/40 md:opacity-0 md:group-hover:opacity-100 md:group-hover:bg-black/60 
                                 transition-all duration-500">
+
                     <h3 className="text-xl sm:text-2xl font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-2 
                                    transform md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500">
                         {project.title}
