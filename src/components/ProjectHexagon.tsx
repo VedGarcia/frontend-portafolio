@@ -12,7 +12,7 @@ interface ProjectProps {
 
 export default function ProjectHexagon({ project }: ProjectProps) {
     return (
-        <div className="relative w-[85vw] max-w-[280px] sm:max-w-[320px] md:w-[260px] lg:w-[320px] aspect-[8/9] group">
+        <div className="relative w-[85vw] max-w-[280px] sm:max-w-[320px] md:w-[260px] lg:w-[320px] aspect-8/9 group">
             <div
                 className="w-full h-full bg-violet-900/20 overflow-hidden transition-all duration-500 md:group-hover:bg-violet-800/40"
                 style={{
@@ -35,14 +35,14 @@ export default function ProjectHexagon({ project }: ProjectProps) {
                                    transform md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500">
                         {project.title}
                     </h3>
-                    
+
                     {project.description && (
-                         <p className="text-xs sm:text-sm text-gray-200 line-clamp-3 mb-4 
+                        <p className="text-xs sm:text-sm text-gray-200 line-clamp-3 mb-4 
                                        md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-100">
                             {project.description}
                         </p>
                     )}
-                    
+
                     <Link
                         href={project.link || '#'}
                         target="_blank"
