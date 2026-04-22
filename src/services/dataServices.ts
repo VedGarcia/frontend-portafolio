@@ -32,15 +32,21 @@ async function sendRequest<T>(endpoint: string, params?: QueryParams): Promise<T
         }
     }
 
-    const response = await fetch(url, {
-        next: { revalidate: 60 },
-    });
+    try {
+        const response = await fetch(url, {
+            next: { revalidate: 60 },
+        });
 
-    if (!response.ok) {
-        throw new Error(`Error en la petición a ${endpoint}: ${response.statusText}`);
+        if (!response.ok) {
+            throw new Error(`Error en la petición a ${endpoint}: ${response.statusText}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.warn(`[Build Warning] Could not fetch ${endpoint}, using fallback data.`);
+        const isGlobal = endpoint.startsWith('globals/');
+        return (isGlobal ? { socialLinks: {} } : { docs: [] }) as T;
     }
-
-    return response.json();
 }
 
 export const api = {

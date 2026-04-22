@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 };
 
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Suspense } from "react";
 
 export default async function RootLayout({
   children,
@@ -37,7 +38,9 @@ export default async function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
           <FloatingHexagons />
-          <Navbar socialLinks={profile.socialLinks} />
+          <Suspense fallback={null}>
+            <Navbar socialLinks={profile.socialLinks} />
+          </Suspense>
           <div className="container mx-auto">
             {children}
           </div>
