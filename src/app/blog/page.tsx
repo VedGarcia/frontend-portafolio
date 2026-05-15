@@ -10,8 +10,8 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
 
     // Filtramos los artículos si existe una búsqueda
     if (q) {
-        posts = posts.filter((post: any) => 
-            post.title?.toLowerCase().includes(q) || 
+        posts = posts.filter((post: any) =>
+            post.title?.toLowerCase().includes(q) ||
             post.category?.name?.toLowerCase().includes(q)
         );
     }
@@ -21,9 +21,22 @@ export default async function BlogPage(props: { searchParams: Promise<{ [key: st
             <h1 className="mt-16 py-4 text-4xl md:text-6xl font-bold text-violet-950 dark:text-violet-400 tracking-tighter drop-shadow-md dark:drop-shadow-[0_0_15px_rgba(192,132,252,0.8)] transition-colors">Artículos</h1>
 
             {posts.length === 0 ? (
-                <div className="mt-20 flex flex-col items-center justify-center text-center">
-                    <p className="text-2xl font-semibold text-violet-900 dark:text-violet-400 drop-shadow-sm mb-2">No se encontraron artículos.</p>
-                    <p className="text-violet-900/60 dark:text-violet-400/60">No hay resultados para la búsqueda "{q}". Intenta usar otras palabras clave.</p>
+                <div className="mt-20 flex flex-col items-center justify-center text-center px-6">
+                    {q ? (
+                        <>
+                            <h2 className="text-2xl md:text-4xl font-semibold text-violet-900 dark:text-violet-400 drop-shadow-sm mb-4">No se encontraron artículos.</h2>
+                            <p className="text-violet-900/60 dark:text-violet-400/60 text-lg">No hay resultados para la búsqueda "{q}". Intenta usar otras palabras clave.</p>
+                        </>
+                    ) : (
+                        <>
+                            <h2 className="text-2xl md:text-4xl font-semibold text-violet-900 dark:text-violet-400 drop-shadow-sm mb-4">
+                                Aún no hay artículos en este espacio
+                            </h2>
+                            <p className="text-violet-900/60 dark:text-violet-400/60 text-lg">
+                                Es posible que aún no se haya publicado nada.
+                            </p>
+                        </>
+                    )}
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

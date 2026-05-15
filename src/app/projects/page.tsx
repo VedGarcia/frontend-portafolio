@@ -11,10 +11,21 @@ export default async function ProjectsPage() {
                 Mis Proyectos
             </h1>
 
-            <HoneycombGrid 
-                items={projects.docs} 
-                renderItem={(project: any) => <ProjectHexagon project={project} />} 
-            />
+            {!projects || projects.docs.length === 0 ? (
+                <div className="flex flex-col items-center justify-center text-center mt-20 px-6">
+                    <h2 className="text-2xl md:text-4xl font-semibold text-violet-900 dark:text-violet-400 drop-shadow-sm mb-4">
+                        Aún no hay proyectos en este espacio
+                    </h2>
+                    <p className="text-violet-900/60 dark:text-violet-400/60 text-lg">
+                        Vuelve más tarde o espera a que se cargue la información.
+                    </p>
+                </div>
+            ) : (
+                <HoneycombGrid 
+                    items={projects.docs} 
+                    renderItem={(project: any) => <ProjectHexagon project={project} />} 
+                />
+            )}
         </main>
     );
 }
